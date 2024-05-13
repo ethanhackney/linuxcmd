@@ -1,0 +1,14 @@
+make     - make utility to maintainn groups of programs
+awk      - pattern scanning and text processing language
+sed      - stream editor for filtering and transforming text
+yacc     - parser generator
+lex      - lexical analyzer generator
+bash     - Bourne-Again SHell
+bpftrace - a high-level tracing language
+ld       - the linker
+as       - the portable assembler
+gcc      - c compiler
+m4       - macro processor
+tclsh    - tcl interpreter
+cpp      - the c preprocessor
+perl     - the perl language interpreter

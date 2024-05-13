@@ -1,0 +1,19 @@
+telnet     - user interface to the TELNET protocol
+nc         - arbitrary TCP and UDP connections and listens
+tcpdump    - dump traffic on a network
+ping       - send ICMP ECHO_REQUEST to network hosts
+traceroute - print the route packets trace to network hosts
+ssh        - OpenSSH remote login client
+ss         - another utility to investigate sockets
+ip         - show / manipulate routing, network devices, interfaces and tunnels
+ifconfig   - configure a network interface
+netstat    - print network connections, routing tables, interface statistics,
+             masquerade connections, and multicast memberships
+route      - show / manipulate the IP routing table
+arp        - manipulate the system ARP cache
+rarp       - manipulate the system RARP table
+sftp       - OpenSSH secure file transfer
+scp        - OpenSSH secure file copy
+curl       - transfer a URL
+wget       - the non-interactive network downloader
+ftp        - internet file transfer program

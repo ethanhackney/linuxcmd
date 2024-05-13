@@ -1,0 +1,6 @@
+gzip         - compress files
+gunzip       - expand files
+bzip2        - a block-sorting file compressor
+bunzip2      - a block-sorting file decompressor
+bzcat        - decompress files to stdout
+bzip2recover - recovers data from damaged bzip2 files

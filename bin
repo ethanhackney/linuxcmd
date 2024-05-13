@@ -1,0 +1,7 @@
+od      - dump files in octal and other formats
+hexdump - display file contents in hexadecimal, decimal, octal or ascii
+nlist   - retrieve symbol table name list from an executable file
+objdump - display information from object files
+nm      - list symbols from object files
+readelf - display information about ELF files
+ld      - the linker

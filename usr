@@ -1,0 +1,10 @@
+sudo     - execute a command as another user
+who      - show who is logged on
+whoami   - print effective userid
+w        - show who is logged on and what they are doing
+passwd   - change user password
+useradd  - create a new user or update default new user information
+chsh     - change login shell
+chfn     - change real user name and information
+chpasswd - update passwords in batch mode
+su       - run a command with substitute user and group ID

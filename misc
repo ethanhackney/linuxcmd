@@ -1,0 +1,11 @@
+date    - print or set the system date and time
+echo    - display a line of text
+man     - an interface to the system reference manuals
+mesg    - display (or do not display) messages from other users
+nohup   - run a command immune to hangups, with output to a non-tty
+write   - send a message to another user
+whatis  - display one-line manual page descriptions
+apropos - search the manual page names and descriptions
+printf  - format and print date
+whereis - locate the binary, source, and manual page files for a commmand
+env     - run a program in a modified environment

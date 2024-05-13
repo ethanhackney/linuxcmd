@@ -1,0 +1,11 @@
+kill    - send a signal to a process
+nice    - run a program with modified scheduling priority
+ps      - report a snapshot of the current processes
+top     - display Linux processes
+pgrep   - look up processes based on name and other attributes
+pkill   - signal processes based on name and other attributes
+pidwait - wait for processes based on name and other attributes
+killall - kill processes by name
+fuser   - identify processes using files or sockets
+pstree  - display a tree of processes
+pidstat - report statistics for Linux tasks

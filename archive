@@ -1,0 +1,3 @@
+ar      - create, modify, and extract from archives
+tar     - an archiving utility
+ranlib  - generate an index to an archive
