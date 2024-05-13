@@ -16,3 +16,4 @@ rev   - reverse lines characterwise
 tac   - concatenate and print files in reverse
 cat   - concatenate files and print on the standard output
 shuf  - generate random permutations
+cut   - remove sections from each line of files

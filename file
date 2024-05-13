@@ -29,3 +29,4 @@ stat  - display file or file system status
 rev   - reverse lines characterwise
 tac   - concatenate and print files in reverse
 shuf  - generate random permutations
+cut   - remove sections from each line of files
