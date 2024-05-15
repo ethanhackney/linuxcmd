@@ -4,3 +4,12 @@ bzip2        - a block-sorting file compressor
 bunzip2      - a block-sorting file decompressor
 bzcat        - decompress files to stdout
 bzip2recover - recovers data from damaged bzip2 files
+znew         - recompress .Z files to .gz files
+zcmp         - compare compressed files
+zmore        - file perusal filter for crt viewing of compressed text
+zforce       - force a .gz extension on all gzip files
+gzexe        - compress executable files in place
+zip          - package and compress (archive) files
+unzip        - list, test and extract compressed files in a ZIP archive
+zdiff        - compare compressed files
+zgrep        - search possibly compressed files for a regular expression

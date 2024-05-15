@@ -19,3 +19,4 @@ iostat   - report CPU and I/O statistics for devices and partitions
 mpstat   - report processors related statistics
 pidstat  - report statistics for Linux tasks
 tcpdump  - dump traffic on a network
+tapestat - report tape statistics
