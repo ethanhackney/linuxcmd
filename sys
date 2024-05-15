@@ -20,3 +20,8 @@ mpstat   - report processors related statistics
 pidstat  - report statistics for Linux tasks
 tcpdump  - dump traffic on a network
 tapestat - report tape statistics
+shutdown - halt, power-off or reboot the machine
+halt     - halt the machine
+poweroff - power-off the machine
+reboot   - reboot the machine
+sysctl   - configure kernel parameters at runtime

@@ -1,3 +1,4 @@
 stty - change and print terminal line settings
 tabs - set tabs on a terminal
 tty  - print the file name of the terminal connected to standard input
+tmux - terminal multiplexer
