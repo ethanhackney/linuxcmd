@@ -20,3 +20,4 @@ cut      - remove sections from each line of files
 fold     - wrap each input line to fit in specified width
 expand   - convert tabs to spaces
 unexpand - convert spaces to tabs
+column   - columnate lists
