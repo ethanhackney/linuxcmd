@@ -10,3 +10,4 @@ printf  - format and print date
 whereis - locate the binary, source, and manual page files for a commmand
 env     - run a program in a modified environment
 wall    - write a message to all users
+time    - run programs and summarize system resource usage
