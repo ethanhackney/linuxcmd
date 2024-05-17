@@ -12,3 +12,6 @@ m4       - macro processor
 tclsh    - tcl interpreter
 cpp      - the c preprocessor
 perl     - the perl language interpreter
+bc       - an arbitrary precision calculator language
+dc       - an arbitrary precision calculator
+expect   - programmed dialogue with interactive programs

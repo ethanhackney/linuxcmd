@@ -1,0 +1,9 @@
+groff    - front-end for the groff document formatting system
+xditview - display ditroff output
+eqn      - format equations for troff or MathML
+pic      - compile pictures for troff or TeX
+preconv  - convert encoding of input files to something GNU troff understands
+soelim   - interprets .so requests in groff input
+tbl      - format tables for troff
+nroff    - use groff to format documents for TTY devices
+troff    - the troff processor of the groff text formatting system
