@@ -183,3 +183,59 @@ background, whether executed as an asynchronous command or using the bg
 builtin
 
 0 expands to the name of the shell or shell script
+
+Arrays
+======
+bash provides one-dimensional indexed and associative array variables. Any
+variable may be used as an indexed array; the declare builtin will
+explicitly declare an array. There is no maximum limit on the size of an
+array, nor any requirement that members be indexed or assigned contiguously.
+Indexed arrays are referenced using integers and are zero based; associative
+arrays are referenced using arbitrary strings. An indexed array is created
+automatically if any variable is assigned to using the syntax
+
+        name[subscript]=value
+
+the subscript is treated as an arithmetic expression that must evaluate to
+a number. Arrays are assigned to using compound assignments of the form
+
+        name=(value1 ... valuen)
+
+where each value may be of the form [subscript]=string. Indexed array
+assignments do not require anything but string. Each value in the list is
+expanded using all the shell expansions. When assigning to an associative
+array, the words in a compound assignment may be either assignment statements,
+for which the subscript is required, or a list of words that is interpreted as
+a sequence of alternating keys and values
+
+        name=(key1 value1 key2 value2)
+        name=([key1]=value1 [key2]=value)
+
+if an array is subscripted by a negative number, that number is interpreted as
+relative to one greater than the maximum index of the array, so negative
+indices count back from the end of the array, and an index of -1 references
+the last element
+
+any element of an array may be referenced using
+
+        ${name[subscript]}
+
+the braces are required to avoid conflicts with pathname expansion. If
+subscript is @ or *, the word expands to all members of the array. These
+subscripts differ only when the word appears within double quotes. If the word
+is double-quoted, ${name[*]} expands to a single word with the value of each
+array member separated by the first character of the IFS special variable, and
+${name[@]} expands each element of array to a separate word. to get the length
+of an array, use:
+
+        ${#name[*]}
+        ${#name[@]}
+
+it is possible to obtain the keys (indices) of an array as well as the values.
+
+        ${!name[@]}
+        ${!name[*]}
+
+expands to the indices assigned in array variable name. the unset builtin is
+used to destroy arrays. unset name[subscript] destroys the array element at
+index subscript, for both indexed and associative arrays.
