@@ -1,19 +1,22 @@
-sort  - sort lines of text files
-pr    - convert text files for printing
-wc    - print newline, word, and byte counts for each file
-awk   - pattern scanning and text processing language
-sed   - stream editor for filtering and transforming text
-tr    - translate or delete characters
-uniq  - report or omit repeated lines
-tail  - output the last part of files
-head  - output the first part of files
-less  - file perusal filter for crt viewing
-xargs - build and execute command lines from standard input
-tee   - read from standard input and write to standard output and files
-paste - merge lines of files
-grep  - print lines that match patterns
-rev   - reverse lines characterwise
-tac   - concatenate and print files in reverse
-cat   - concatenate files and print on the standard output
-shuf  - generate random permutations
-cut   - remove sections from each line of files
+sort     - sort lines of text files
+pr       - convert text files for printing
+wc       - print newline, word, and byte counts for each file
+awk      - pattern scanning and text processing language
+sed      - stream editor for filtering and transforming text
+tr       - translate or delete characters
+uniq     - report or omit repeated lines
+tail     - output the last part of files
+head     - output the first part of files
+less     - file perusal filter for crt viewing
+xargs    - build and execute command lines from standard input
+tee      - read from standard input and write to standard output and files
+paste    - merge lines of files
+grep     - print lines that match patterns
+rev      - reverse lines characterwise
+tac      - concatenate and print files in reverse
+cat      - concatenate files and print on the standard output
+shuf     - generate random permutations
+cut      - remove sections from each line of files
+fold     - wrap each input line to fit in specified width
+expand   - convert tabs to spaces
+unexpand - convert spaces to tabs

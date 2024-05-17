@@ -1,32 +1,35 @@
-cat   - concatenate files and print on the standard output
-cmp   - compare two files byte by byte
-cp    - copy files and directories
-dd    - convert and copy a file
-diff  - compare files line by line
-file  - determine file type
-chmod - change file mode bits
-cp    - copy files and directories
-ln    - make links between files
-ls    - list directory contents
-mv    - move (rename) files
-od    - dump files in octal and other formats
-pr    - convert text files for printing
-rm    - remove files or directories
-sort  - sort lines of text files
-tail  - output the last part of files
-wc    - print newline, word, and byte counts for each file
-awk   - pattern scanning and text processing language
-sed   - stream editor for filtering and transforming text
-uniq  - report or omit repeated lines
-comm  - compare two sorted files line by line
-join  - join lines of two files on a common field
-chgrp - change group ownership
-chown - change file owner and group
-head  - output the first part of files
-less  - file perusal filter for crt viewing
-paste - merge lines of files
-stat  - display file or file system status
-rev   - reverse lines characterwise
-tac   - concatenate and print files in reverse
-shuf  - generate random permutations
-cut   - remove sections from each line of files
+cat      - concatenate files and print on the standard output
+cmp      - compare two files byte by byte
+cp       - copy files and directories
+dd       - convert and copy a file
+diff     - compare files line by line
+file     - determine file type
+chmod    - change file mode bits
+cp       - copy files and directories
+ln       - make links between files
+ls       - list directory contents
+mv       - move (rename) files
+od       - dump files in octal and other formats
+pr       - convert text files for printing
+rm       - remove files or directories
+sort     - sort lines of text files
+tail     - output the last part of files
+wc       - print newline, word, and byte counts for each file
+awk      - pattern scanning and text processing language
+sed      - stream editor for filtering and transforming text
+uniq     - report or omit repeated lines
+comm     - compare two sorted files line by line
+join     - join lines of two files on a common field
+chgrp    - change group ownership
+chown    - change file owner and group
+head     - output the first part of files
+less     - file perusal filter for crt viewing
+paste    - merge lines of files
+stat     - display file or file system status
+rev      - reverse lines characterwise
+tac      - concatenate and print files in reverse
+shuf     - generate random permutations
+cut      - remove sections from each line of files
+fold     - wrap each input line to fit in specified width
+expand   - convert tabs to spaces
+unexpand - convert spaces to tabs
