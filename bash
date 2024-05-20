@@ -456,3 +456,51 @@ or *, the pattern removal operation is applied to each member of the array
 
         jobs=('title: programmer', 'title: professor')
         echo ${jobs[@]#title:} # programmer, professor
+
+${parameter%word}
+${parameter%%word}
+------------------
+remove matching suffix pattern. the word is expanded to produce a
+pattern just as in pathname expansion, and matching against the expanded
+value of paramter using the rules described in pattern matching. If the
+pattern matches a trailing portion of the expanded value of parameter, then
+the result of the expansion is the expanded value of paramater with the
+shortest matching pattern with % or the longest matching pattern with %%. If
+parameter is an array variable subscripted with @ or *, the pattern is
+performed on each entry of array
+
+        name=ethanethan
+        echo ${name%ethan*}  # ethan
+        echo ${name%%ethan*} # nothing
+        ages=('chris 28', 'sonny 26' 'ethan 27')
+        echo ${ages[@]%%[0-9]*} # chris sonny ethan
+
+${parameter/pattern/string}
+---------------------------
+pattern substitution. the pattern is expanded to produce a pattern just as
+in pathname expansion. parameter is expanded and the longest match of pattern
+against its value is replaced with string. if pattern beings with /, all
+matches of the pattern are replaced with string. normally only the first
+match is replaced. if pattern begins with #, it must match at the beginning
+of the expanded value of parameter. If pattern begins with %, it must match
+at the end of the expanded value of parameter. if string is null, matches
+of pattern are deleted and the / following the pattern may be omitted. If
+parameter is @ or *, the substitutioin operation is applied to each
+positional parameter. the same is done for arrays
+
+        name='ethan andrew hackney'
+        echo ${name/ andrew / } # ethan hackney
+
+        name='andrew ethan'
+        echo ${name/#ethan}  # andrew ethan
+        name='andrew ethan'
+        echo ${namm/#andrew} # ethan
+
+        name='ethan andrew andrew'
+        echo ${name/%andrew} # ethan andrew
+
+        name='ethan andrew andrew andrew hackney'
+        echo ${name//andrew/ } # ethan hackney
+
+        ages=('chris 28' 'sonny 26' 'ethan 27')
+        echo ${ages[@]/% [0-9]*} # chris sonny ethan
