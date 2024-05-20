@@ -504,3 +504,152 @@ positional parameter. the same is done for arrays
 
         ages=('chris 28' 'sonny 26' 'ethan 27')
         echo ${ages[@]/% [0-9]*} # chris sonny ethan
+
+${parameter^pattern}
+${parameter^^pattern}
+${parameter,pattern}
+${parameter,,pattern}
+---------------------
+case modification. this expansion modifies the case of alphabetic characters
+in parameter. the pattern is expanded to produce a pattern just as in pathname
+expansion. each character in the expanded value of parameter is tested against
+pattern, and, if it matches the pattern its case is converted. the pattern
+should not attempt to match more than one character. the ^ operator converts
+lowercase letters matching pattern to uppercase; the , operator converts
+matching uppercase letters to lowercase. the ^^ and ,, expansions convert
+each matched character in the expanded value. if pattern is omitted, it is
+treated like a ?, which matches every character. if parameter is @ or *, the
+case modification operation is applied to each positional parameter. the same
+is done if parameter is an array
+
+        name='Ethan Andrew Hackney'
+        echo ${name^^} # ETHAN ANDREW HACKNEY
+        echo ${name,,} # ethan andrew hackney
+
+        peeps=(Chris Sonny Rich Jon Pat Luke)
+        echo ${peeps[@],,} # chris sonnyy rich jon pat luke
+
+command substitution
+====================
+command substitution allows the output of a command to replace the command
+name. There are two forms
+
+        $(command) or `command`
+
+bash performs the expansion by executing command in a subshell environment and
+replacing the command substitution with the standard output of the command,
+with any trailing newlines deleted. Embedded newlines are not deleted, but
+they may be removed during word splitting. the command substitution $(cat file)
+can be replaced by the equivalent but faster $(<file)
+
+when the old-style backquote form of substitution is used, backslash retains
+its literal meaning except when followed by $, `, or \. the first backquote
+not preceded by a backslash terminates the command substitution.
+
+command substitution may be nested. to nest when using the backquoted form,
+escape the inner backquotes with backslashes
+
+if the substitution appears within double quotes, word splitting and pathname
+expansion are not performed on the results
+
+arithmetic expansion
+====================
+arithmetic expansion allows the evaluation of an arithmetic expression and
+the substitution of the result. the format for arithmetic espansion is:
+
+        $((expression))
+
+the expression is treated as if it were within double quotes, but a double
+quote inside the parentheses is not treated specially. all tokens in th
+expression undergo parameter and variable expansion, command substitution,
+and quote removal. the result is treated as the arithmetic expression to
+be evaluated. arithmetic expansion may be nested
+
+process substitution
+====================
+process substitution allows a process's input or output to be referred to using
+a filename. it takes the form of <(list) or >(list). the process list is
+run asynchronously, and its input or output appears as a filename. This
+filename is passed as an argument to the current command as the result of the
+expansion. if the >(list) form is used, writing to the file will provide input
+for list. if the <(list) form is used, the file passed as an argument should be
+read to obtain the output of list. process substitution is supported on systems
+that support named pipes (FIFOs) or the /dev/fd method of naming open files
+
+word splitting
+==============
+the shell scans the results of parameter expansion, command substitution, and
+arithmetic expansion that did not occur within double quotes for word
+splitting
+
+the shell treats each character of IFS as a delimiter, and splits the
+results of the other expansions into words using these characters as field
+terminators. if IFS is unset, or its value is exactly <space><tab><newline>,
+the default, then sequence of <space>, <tab>, and <newline> is used.
+
+explicit null arguments ("" or '') are retained and passed to commands as
+empty strings
+
+note that if no expansion occurs, no splitting is performed
+
+pathname expansion
+==================
+after word splitting, unless the -f option has been set, bash scans each
+word for the characters *, ?, and [. if one of these characters appears,
+and is not quoted, then the word is regarded as a pattern, and replaced with
+an alphabetically sorted list of filenames matching the pattern.
+
+pattern matching
+================
+any character that appears in a pattern, other than the special pattern
+characters described below, matches itself. the NUL character may not occur
+in a pattern. a backslash escapes the following character; the escaping
+backslash is discarded when matching. The special pattern characters must be
+quoted if they are to be matched literally
+
+the special pattern characters having the following meanings:
+
+*:     matches any string, including the null string
+?:     matches any single character
+[...]: matches any one of the enclosed characters
+
+redirection
+===========
+before a command is executed, its input and output may be redirected using a
+special notation interpreted by the shell. redirection allos commands' file
+handles to be duplicated, opened, closed, made to refer to different files, and
+can change the files the command reads from and writes to. redirections are
+processed in the order they appear, from left to right
+
+each redirection that may be preceded by a file descriptor number may instead
+by preceded by a word of the form {varname}. In this case, for each
+redirection operator except >&- and <&-, the shell will allocate a file
+descriptor greater than or equal to 10 and assign it to varname. If >&- or
+<&- is preceded by {varname}, the value of varname defines the file descriptor
+to close. If {varname} is supplied, the redirection persists beyond the scope
+of the command, allowing the shell programmer to manage the file descriptor
+himself
+
+if the file descriptor is omitted, and the first character of the redirection is
+<, the redirection refers to the standard input (file descriptor 0). If the
+first character of the redirection operator is >, the redirection refers to the
+standard output (file descriptor 1)
+
+the word following the redirection operator in the following descriptions,
+unless otherwise noted, is subjected to brace expansion, tilde expansion,
+parameter and variable expansion, command substitution, arithmetic expansion,
+quote removal, pathname expansion, and word splitting. If it expands to more
+than one word, bash reports an error
+
+note that the order of redirection is significant. for example, the command
+
+        ls > dirlist 2>&1
+
+directs both standard output and standard error to the file 'dirlist', while the
+command
+
+        ls 2>&1 >dirlist
+
+directs only the standard output to file dirlist, because the standard error was
+duplicated from the standard output before the standard output was redirected
+to dirlist
