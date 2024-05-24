@@ -653,3 +653,150 @@ command
 directs only the standard output to file dirlist, because the standard error was
 duplicated from the standard output before the standard output was redirected
 to dirlist
+
+bash handles several filenames specially when they are used in redirections, as
+described in the following table. If the operating system on which bash is
+running provides these special files, bash will use them; otherwise it will
+emulate them internally with the behavior described below
+
+        /dev/fd/fd
+                if fd is a valid integer, file descriptor fd is duplicated
+
+        /dev/stdin
+                file descriptor 0 is duplicated
+
+        /dev/stdout
+                file descriptor 1 is duplicated
+
+        /dev/stderr
+                file descriptor 2 is duplicated
+
+        /dev/tcp/host/port
+                if host is a valid hostname or internet address, and port is an
+                integer port number of service name, bash attemps to open the
+                corresponding TCP socket
+
+        /dev/udp/host/port
+                if host is a valid hostname or internet address, and port is an
+                integer port number of service name, bash attemps to open the
+                corresponding UDP socket
+
+redirecting input
+=================
+redirection of input causes the file whose name results from the expansion of
+word to be opened for reading on file descriptor n, or the standard input if
+n is not specified
+
+        [n]<word
+
+redirecting output
+------------------
+redirection of output causes the file whose name results from the expansion of
+word to be opened for writing on file descriptor n, or the standard output if
+n is not specified. if the file does not exist it is created; if it does exist
+it is truncated to zero size
+
+        [n]>word
+
+appending redirected output
+---------------------------
+redirection of output in this fashion causes the file whose name results from
+the expansion of word to be opened for appending on file descriptor n, or the
+standard output is n is not specified. if the file does not exist it is created
+
+        [n]>>word
+
+redirecting standard output and standard error
+----------------------------------------------
+this construct allows both the standard output and the standard error output to
+be redirected to the file whose name is the expansion of word. there are two
+formats for redirecting standard output and standard error
+
+        &>word
+        >&word
+
+of the two forms, the first is preferred. this is semantically equivalent to
+
+        >word 2>&1
+
+appending standard output and standard error
+--------------------------------------------
+this construct allows both the standard output and the standard error output
+to be appended to the file whose name is the expansion of word. the format for
+appending standard output and standard error is:
+
+        &>>word
+
+this is semantically equivalent to
+
+        >>word 2>&1
+
+here documents
+--------------
+this type of redirection instructs the shell to read input from the current
+source until a line containing only delimiter is seen. all of the lines read
+up to that point are then used as the standard input (or descriptor n if n
+is specified) for a command. the format of here-documents is:
+
+        [n]<<[-]word
+                here document
+        delimiter
+
+no parameter and variable expansion, command substitution, arithmetic expansion,
+or pathname expansion is performed on word. If the redirection operator is <<-,
+then all leading tab characters are stripped from input lines and the line
+containing delimiter. this allows here-documents within shell scripts to be
+indented in a natural fashion
+
+here strings
+------------
+a variant of here documents, the format is:
+
+        [n]<<<word
+
+the word undergoes tilde expansion, parameter and variable expansion, command
+substitution, arithmetic expansion, and quote removal. pathname expansion and
+word splitting are not performed. the result is supplied as a single string,
+with a newline append, to the command on its standard input
+
+duplicating file descriptors
+----------------------------
+the redirection operator
+
+        [n]<&word
+
+is used to duplicate input file descriptors. if word expands to one or more
+digits, the file descriptor denoted by n is made to be a copy of that file
+descriptor. if the digits in word do not specify a file descriptor open for
+input, a redirection error occurs. if word evaluates to -, the file descriptor
+n is closed. if n is not specified, the standard input is used
+
+        [n]>&word
+
+is used similarly to duplicate output file descriptors
+
+moving file descriptors
+-----------------------
+the redirection operator
+
+        [n]<&digit-
+
+moves the file descriptor digit to file descriptor n, or the standard input if
+n is not specified. digit is closed after being duplicated to n
+
+similarly, the redirection operator
+
+        [n]>&digit-
+
+moves the file descriptor digit to file descriptor n, or the standard output if
+n is not specified
+
+opening file descriptor for reading and writing
+-----------------------------------------------
+the redirection operator
+
+        [n]<>word
+
+causes the file whose name is the expansion of word to be opened for both
+reading and writing on file descriptor n, or on file descriptor 0 if n is
+not specified
