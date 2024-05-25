@@ -800,3 +800,179 @@ the redirection operator
 causes the file whose name is the expansion of word to be opened for both
 reading and writing on file descriptor n, or on file descriptor 0 if n is
 not specified
+
+functions
+=========
+a shell function stores a series of commands for later execution. when the
+name of a shell function is used as a simple command name, the list of
+commands associated with the function name is executed. functions are
+executed in the context of the current shell; no new process is created to
+interpret them (contrast this with the execution of a shell script). When a
+function is executed, the arguments to the function become positional
+parameters during its execution
+
+variables local to the function may be declared with the local builtin command.
+Ordinarily, variables and their values are shared between the function and
+its caller. if a variable is declared local, the variable's visible scope is
+restricted to that function and its children (including the functions it
+calls). local variables shadow variables with the same name declared at
+previous scopes
+
+the shell uses dynamic scoping to control a variable's visibility within
+functions. with dynamic scoping, visible variables and their values are a
+result of the sequence of function calls that caused execution to reach
+the current function. the value of a variable that a function sees depends
+on its value within its caller, if any, whether that caller is the global
+scope or another shell function. this is also the value that a local variable
+declaration shadows, and the value that is restored when the function returns
+
+if the builtin command return is executed in a function, the function completes
+and execution resumes with the next command after the function call
+
+functions may be recursive.
+
+arithmetic evaluation
+=====================
+the shell allows arithmetic expressions to be evaluated, under certain
+circumstances. evaluation is done in fixed-width integers with no check for
+overflow, though division by 0 is trapped and flagged as an error. the
+operators and their precedence, associativity, and values are the same as in
+the C language
+
+        id++ id--
+                variable post-increment and post-decrement
+        - +
+                unary minus and plus
+        ++id --id
+                variable pre-increment and pre-decrement
+        ! ~
+                logical and bitwise negation
+        **
+                exponentiation
+        * / %
+                multiplication, division, remainder
+        + -
+                addition, subtraction
+        << >>
+                left and right bitwise shifts
+        <= >= < >
+                comparison
+        == !=
+                equality and inequality
+        &
+                bitwise AND
+        ^
+                bitwise XOR
+        |
+                bitwise OR
+        &&
+                logical AND
+        ||
+                logical OR
+        expr?expr:expr
+                conditional operator
+        = *= /= %= += -= <<= >>= &= ^= |=
+                assignment
+        expr1, expr2
+                comma
+
+shell variables are allowed as operands; parameter expansion is performed
+before the expression is evaluated. within an expression, shell variables may
+also be referenced by name without using the parameter expansion syntax. A
+shell variable that is null or unset evaluates to 0 when referenced by name
+without using the parameter expansion syntax.
+
+integer constants follow the C language definition, without suffixes or
+character constants. constants with a leading 0 are interpreted as octal
+numbers. A leading 0x or 0X denotes hexadecimal. otherwise, numbers take
+the form [base#]n, where the optional base is a decimal number between 2
+and 64 representing the arithmetic base, and n is a number in that base.
+If base# is omitted, then base 10 is used
+
+conditional expressions
+=======================
+conditional expressions are used by the [[ compound command and the test and [
+builtin commands to test file attributes and perform string and arithmetic
+comparisons
+
+when used with [[, the < and > operators sort lexicographically using the
+current locale
+
+        -a file
+                true if file exists
+        -b file
+                true if file exists and is a block special file
+        -c file
+                true if file exists and is a character special file
+        -d file
+                true if file exists and is a directory
+        -e file
+                true if file exists
+        -f file
+                true if file exists and is a regular file
+        -g file
+                true if file exists and is set-group-id
+        -h file
+                true if file exists and is a symbolic link
+        -k file
+                true if file exists and its sticky bit is set
+        -p file
+                true if file exists and is a named pipe (FIFO)
+        -r file
+                true if file exists and is readable
+        -s file
+                true if file exists and has a size greater than zero
+        -t fd
+                true if file descriptor fd is open and refers to a terminal
+        -u file
+                true if file exists and its set-user-id bit is set
+        -w file
+                true if file exists and is writable
+        -x file
+                true if file exists and is executable
+        -G file
+                true if file exists and is owned by the effective group id
+        -L file
+                true if file exists and is a symbolic link
+        -N file
+                true if file exists and has been modified since it was last read
+        -O file
+                true if file exists and is owned by the effective user id
+        -S file
+                true if file exists and is a socket
+        file1 -ef file2
+                true if file1 and file2 refer to the same device and
+                inode numbers
+        file1 -nt file2
+                true if file1 is newer then file2 or if file1 exists and file2
+                does not
+        file1 -ot file2
+                true if file1 is older than file2, or if file2 exists and file1
+                does not
+        -o optname
+                true if the shell option optname is enable
+        -v varname
+                true if the shell variable varname is set
+        -R varname
+                true if the shell variable varname is set and is a name
+                reference
+        -z string
+                true if the length of string is zero
+        string
+        -n string
+                true if the length of string is non-zero
+        string1 == string2
+        string1 = string2
+                true if the strings are equal. = should be used with the test
+                command for POSIX conformance. when used with the [[ command,
+                this performs pattern matching
+        string1 != string2
+                true if the strings are not equal
+        string1 < string2
+                true if string1 sorts before string2 lexicographically
+        string1 > string2
+                true if string1 sorts after string2 lexicographically
+        arg1 OP arg2
+                OP is one of -eq, -ne, -lt, -le, -gt, or -ge. These
+                arithmetic binary operators return true if arg1 OP arg2
+                returns true
