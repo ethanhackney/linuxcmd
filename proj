@@ -1,3 +1,6 @@
-make - make utility to maintain groups of programs
-git  - the stupid content tracker
-ld   - the linker
+make  - make utility to maintain groups of programs
+git   - the stupid content tracker
+ld    - the linker
+diff  - compare files line by line
+patch - apply a diff file to an original
+diff3 - compare three files line by line

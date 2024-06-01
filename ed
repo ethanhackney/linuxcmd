@@ -1,1 +1,2 @@
-vim - Vi IMproved, a programmer's text editor
+vim     - Vi IMproved, a programmer's text editor
+vimdiff - edit between two and eight versions of a file with vim

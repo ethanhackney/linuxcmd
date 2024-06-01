@@ -35,3 +35,4 @@ expand   - convert tabs to spaces
 unexpand - convert spaces to tabs
 column   - columnate lists
 nl       - number lines of files
+diff3    - compare three files line by line
