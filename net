@@ -17,3 +17,7 @@ wget       - the non-interactive network downloader
 ftp        - internet file transfer program
 netstat    - print network connections, routing tables, interface statistics,
              masquerade connections, and multicast memberships
+dig        - DNS lookup utility
+host       - DNS lookup utility
+delv       - DNS lookup and validation utility
+ss         - another utility to investigate sockets
